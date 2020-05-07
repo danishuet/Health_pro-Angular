@@ -2,3 +2,4 @@
 Ratings :
 
 https://www.npmjs.com/package/angular-star-rating
+//this is main document
