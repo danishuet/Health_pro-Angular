@@ -11,6 +11,7 @@ import  {SiteLayoutHeadfootComponent } from './site-layout-headfoot/site-layout-
 import {HomePageComponent} from './home-page/home-page.component';
 import {RegisterUserComponent} from './register-user/register-user.component';
 import {ProfessionalProfileComponent} from './professional-profile/professional-profile.component';
+import { CommonModule } from '@angular/common';
 const routes: Routes =[
     {path:'',redirectTo:'/home',pathMatch:'full'},
     {

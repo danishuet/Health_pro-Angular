@@ -1,12 +1,92 @@
-<div class="site-blocks-cover inner-page-cover overlay"  data-aos="fade" data-stellar-background-ratio="0.5">
-  <div class="container">
+<div style="background-color: white;"  data-aos="fade" data-stellar-background-ratio="0">
+  <div class="container" style="margin-top: 100px;">
     <div class="row align-items-center justify-content-center text-center">
 
       <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+<br/><br/>
 
-<p>
-  professional-profile works!
-</p>
+<legend>Profile Information</legend>
+<div class="container" style="margin-left: -200px;">
+  <div class="row">
+      <div class="col-md-12 mx-auto">
+          <form>
+              <div class="form-group row">
+                  <div class="col-md-6 ">
+                      <label for="inputFirstname">First name</label>
+                      <input type="text" class="form-control" id="inputFirstname" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address']" [(ngModel)]="_ProfessionalProfile.Address" name="Address" placeholder="First name">
+                  </div>
+                   <div class="col-sm-6">
+                      <label for="inputLastname">Last name</label>
+                      <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+                  
+                    </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-6">
+                      <label for="inputAddressLine1">Address</label>
+                      <input type="text" class="form-control" id="inputAddressLine1" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address']" [(ngModel)]="_ProfessionalProfile.Address" name="Address"  placeholder="Street Address">
+                      <span *ngIf="ProfessionalProfile.controls['Address'].hasError('required') && showValidationMessage" class="error-text">Please enter Addess.</span>
+                    </div>
+                  <div class="col-sm-6">
+                      <label for="inputAddressLine2">Address (Line 2)</label>
+                      <input type="text" class="form-control" id="inputAddressLine2" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address2']" [(ngModel)]="_ProfessionalProfile.Address2" name="Address2" placeholder="Line 2">
+                      <span *ngIf="ProfessionalProfile.controls['Address2'].hasError('required') && showValidationMessage" class="error-text">Please enter Addess2.</span>
+                    </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="Category">Category</label>
+                    <input type="text" class="form-control" id="Category" placeholder="Category">
+                </div>
+                <div class="col-sm-6">
+                    <label for="subcategory">sub-Category</label>
+                    <select  class="form-control">  
+                        <option *ngFor="let item of _categoryList;" [value]="item.value">{{item.text}}</option>
+                    </select>
+                    <input type="text" class="form-control" id="subcategory" placeholder="sub category">
+                </div>
+            </div>
+              <div class="form-group row">
+                  <div class="col-sm-6">
+                      <label for="inputCity">City</label>
+                      <input type="text" class="form-control" id="inputCity" placeholder="City">
+                  </div>
+                  <div class="col-sm-3">
+                      <label for="inputState">State</label>
+                      <input type="text" class="form-control" id="inputState" placeholder="State">
+                  </div>
+                  <div class="col-sm-3">
+                      <label for="inputPostalCode">Postal Code</label>
+                      <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code">
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <div class="col-sm-4">
+                      <label for="inputContactNumber">Contact Number</label>
+                      <input type="number" class="form-control" id="inputContactNumber" placeholder="Contact Number">
+                  </div>
+                  <div class="col-sm-4">
+                      <label for="inputWebsite">Website</label>
+                      <input type="text" class="form-control" id="inputWebsite" placeholder="Website">
+                  </div>
+                  <div class="col-sm-4">
+                    <label for="logo">Company Logo</label>
+                    <input type="file" id="logo">
+                  </div>
+              </div> 
+              <div class="form-group-row">
+                  <div class="col-md-6">
+                    <input type="submit" value="Save" class="btn btn-primary px-4" (click)="registerUser()"/>
+
+
+                    <input type="submit" value="Cancel" class="btn btn-primary px-4"/>
+
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 </div>
 </div>
 </div>

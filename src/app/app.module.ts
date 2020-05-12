@@ -64,7 +64,8 @@ export function authInterceptorFactory(router: Router, dataService: DataService)
     FooterComponentComponent,
     ProfessionalProfileComponent,
     LayoutHeaderFooterComponent,
-    SiteLayoutHeadfootComponent,
+    SiteLayoutHeadfootComponent
+   
   ],
   imports: [
     BrowserModule,
