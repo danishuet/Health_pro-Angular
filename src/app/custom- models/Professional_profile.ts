@@ -7,10 +7,11 @@ export class ProfessionalProfile {
     Address2:string;
     Zip_code:string;
     City:number;
-    State_Id:string;
+    State_Id:number;
     UserId:number;
     Mobile:string;
     Phone:string;
     Website:string;
-
+    Professional_Category:number;
+    Professional_SubCategory:number;
 }

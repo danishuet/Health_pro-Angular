@@ -13,67 +13,99 @@
               <div class="form-group row">
                   <div class="col-md-6 ">
                       <label for="inputFirstname">First name</label>
-                      <input type="text" class="form-control" id="inputFirstname" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address']" [(ngModel)]="_ProfessionalProfile.Address" name="Address" placeholder="First name">
+                      <input type="text" class="form-control" id="inputFirstname" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['FirstName']" [(ngModel)]="_ProfessionalProfile.FirstName" name="FirstName" placeholder="First name">
                   </div>
                    <div class="col-sm-6">
                       <label for="inputLastname">Last name</label>
                       <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
-                  
+
                     </div>
               </div>
               <div class="form-group row">
                   <div class="col-sm-6">
                       <label for="inputAddressLine1">Address</label>
-                      <input type="text" class="form-control" id="inputAddressLine1" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address']" [(ngModel)]="_ProfessionalProfile.Address" name="Address"  placeholder="Street Address">
+                      <input type="text" class="form-control" id="inputAddressLine1"  [formControl]="ProfessionalProfile.controls['Address']" [(ngModel)]="_ProfessionalProfile.Address" name="Address"  placeholder="Street Address">
                       <span *ngIf="ProfessionalProfile.controls['Address'].hasError('required') && showValidationMessage" class="error-text">Please enter Addess.</span>
                     </div>
                   <div class="col-sm-6">
                       <label for="inputAddressLine2">Address (Line 2)</label>
-                      <input type="text" class="form-control" id="inputAddressLine2" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)" [formControl]="ProfessionalProfile.controls['Address2']" [(ngModel)]="_ProfessionalProfile.Address2" name="Address2" placeholder="Line 2">
+                      <input type="text" class="form-control" id="inputAddressLine2"  [formControl]="ProfessionalProfile.controls['Address2']" [(ngModel)]="_ProfessionalProfile.Address2" name="Address2" placeholder="Line 2">
                       <span *ngIf="ProfessionalProfile.controls['Address2'].hasError('required') && showValidationMessage" class="error-text">Please enter Addess2.</span>
                     </div>
               </div>
               <div class="form-group row">
                 <div class="col-sm-6">
+                    <!-- [formControl]="ProfessionalProfile.controls['Professional_Category']" -->
                     <label for="Category">Category</label>
-                    <input type="text" class="form-control" id="Category" placeholder="Category">
+                    <select   class="form-control " id="Professional_Category" (keypress)="keyRestrict($event,'abcdefghijklmnopqrstuvwxyz',null,null,null)"
+                    (change)="getAllSubCategories()" [(ngModel)]="_ProfessionalProfile.Professional_Category" name="Professional_Category">
+                        <option *ngFor="let item of _categoryList;"  [value]="item.value">{{item.text}}</option>
+                    </select>
+                     <span *ngIf="ProfessionalProfile.controls['Professional_Category'].hasError('required') && showValidationMessage" class="error-text">Please enter Category.</span> 
+                    <!-- <input type="text" class="form-control" id="Category" placeholder="Category"> -->
                 </div>
                 <div class="col-sm-6">
                     <label for="subcategory">sub-Category</label>
-                    <select  class="form-control">  
-                        <option *ngFor="let item of _categoryList;" [value]="item.value">{{item.text}}</option>
+                    <select  class="form-control" id="Professional_SubCategory"
+                     [(ngModel)]="_ProfessionalProfile.Professional_SubCategory" name="Professional_SubCategory">
+                        <option *ngFor="let item of _SubCategoryList;" [value]="item.value">{{item.text}}</option>
                     </select>
-                    <input type="text" class="form-control" id="subcategory" placeholder="sub category">
+                    <span *ngIf="ProfessionalProfile.controls['Professional_SubCategory'].hasError('required') && showValidationMessage" class="error-text">Please enter sub Category.</span>
+                    <!-- <input type="text" class="form-control" id="subcategory" placeholder="sub category"> -->
                 </div>
             </div>
               <div class="form-group row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-3">
                       <label for="inputCity">City</label>
-                      <input type="text" class="form-control" id="inputCity" placeholder="City">
-                  </div>
+                      <select   class="form-control" id="City"
+                    [(ngModel)]="_ProfessionalProfile.City" (change)="getAllStates()" name="City">
+                        <option *ngFor="let item of _Cities;"  [value]="item.value">{{item.text}}</option>
+                    </select>
+                     <span *ngIf="ProfessionalProfile.controls['City'].hasError('required') && showValidationMessage" class="error-text">Please select city.</span> 
+                      <!-- <input type="text" class="form-control" id="inputCity" placeholder="City"> -->
+
+
+
+                    </div>
                   <div class="col-sm-3">
                       <label for="inputState">State</label>
-                      <input type="text" class="form-control" id="inputState" placeholder="State">
+                      <select  class="form-control" id="State_Id"
+                     [(ngModel)]="_ProfessionalProfile.State_Id" name="State_Id">
+                        <option *ngFor="let item of _State;" [value]="item.value">{{item.text}}</option>
+                    </select>
+                     <span *ngIf="ProfessionalProfile.controls['State_Id'].hasError('required') && showValidationMessage" class="error-text">Please select State.</span> 
                   </div>
                   <div class="col-sm-3">
                       <label for="inputPostalCode">Postal Code</label>
-                      <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code">
-                  </div>
+                      <input type="text" class="form-control" id="inputPostalCode" [formControl]="ProfessionalProfile.controls['Zip_code']"  [(ngModel)]="_ProfessionalProfile.Zip_code" name="Zip_code" placeholder="Zip Code">
+                       <span *ngIf="ProfessionalProfile.controls['Zip_code'].hasError('required') && showValidationMessage" class="error-text">Please Enter Zip Code.</span> 
+
+                      <!-- <span *ngIf="ProfessionalProfile.controls['Zip_code'].errors?.required && ProfessionalProfile.controls['Zip_code'].touched">Zip code is Required </span> -->
+                    </div>
+
+                  <div class="col-sm-3">
+                    <label for="inputMobile">Mobile</label>
+                    <input type="text" class="form-control" id="inputMobile" [formControl]="ProfessionalProfile.controls['Mobile']"  [(ngModel)]="_ProfessionalProfile.Mobile" name="Mobile" required placeholder="Mobile #">
+                     <span *ngIf="ProfessionalProfile.controls['Mobile'].hasError('required') && showValidationMessage" class="error-text">Please Enter Mobile.</span>
+                </div>
               </div>
               <div class="form-group row">
                   <div class="col-sm-4">
                       <label for="inputContactNumber">Contact Number</label>
-                      <input type="number" class="form-control" id="inputContactNumber" placeholder="Contact Number">
-                  </div>
+                      <input type="text" class="form-control" id="inputContactNumber" [formControl]="ProfessionalProfile.controls['Phone']"   [(ngModel)]="_ProfessionalProfile.Phone" name="Phone" placeholder="Contact Number">
+                      <span *ngIf="ProfessionalProfile.controls['Phone'].hasError('required') && showValidationMessage" class="error-text">Please Enter Phone.</span> 
+                 
+                    </div>
                   <div class="col-sm-4">
                       <label for="inputWebsite">Website</label>
-                      <input type="text" class="form-control" id="inputWebsite" placeholder="Website">
+                      <input type="text" class="form-control" id="inputWebsite"  [(ngModel)]="_ProfessionalProfile.Website" name="Website" placeholder="Website">
+                      <span *ngIf="ProfessionalProfile.controls['Website'].hasError('required') && showValidationMessage" class="error-text">Please Enter website URL.</span> 
                   </div>
                   <div class="col-sm-4">
                     <label for="logo">Company Logo</label>
-                    <input type="file" id="logo">
+                    <input type="file" id="logo"  [(ngModel)]="_ProfessionalProfile.Company_Logo" name="Company_Logo" placeholder="Logo">
                   </div>
-              </div> 
+              </div>
               <div class="form-group-row">
                   <div class="col-md-6">
                     <input type="submit" value="Save" class="btn btn-primary px-4" (click)="registerUser()"/>

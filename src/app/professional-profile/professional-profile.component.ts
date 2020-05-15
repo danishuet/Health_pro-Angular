@@ -9,6 +9,7 @@ import {DataService} from '../dataservice/utility.dataservice.component';
 import {RegisterUserModel} from '../custom- models/user-models/user-model';
 import {CommonUtilityComponent} from '../common-utility/common-utility.component';
 import { ProfessionalProfile } from '../custom- models/Professional_profile';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 @Component({
   selector: 'app-professional-profile',
   templateUrl: './professional-profile.component.html',
@@ -22,7 +23,10 @@ export class ProfessionalProfileComponent implements OnInit {
 
   public _ProfessionalProfile: ProfessionalProfile = new ProfessionalProfile();
   public _categoryList : any[];
-
+  public _SubCategoryList: any[];
+  public _Cities:any[];
+  public _State:any[];
+  
   constructor(private _apiService: ApiService, private _dataSerivce: DataService, private _router: Router,
     private _urlService: Configuration, private _progressBar: NgProgress,
      private builder: FormBuilder, private util: CommonUtilityComponent) {
@@ -32,8 +36,8 @@ export class ProfessionalProfileComponent implements OnInit {
 
   ngOnInit() {
     this.getAllCategories();
-    this.registerUserValidation();
-  
+   this.getAllCities();
+   this.registerUserValidation();
   }
  
  keyRestrict(e, validchars, casesensitives, onceevery, onceoneof): boolean {
@@ -44,13 +48,17 @@ export class ProfessionalProfileComponent implements OnInit {
        'Address': [null, Validators.required],
       //  'Company_Name': [null, Validators.required],
         'Address2': [null, Validators.required],
-      //  'Zip_code': [null, Validators.required],
-      //  'State_Id': [null, Validators.required],
-      //  'City': [null, Validators.required],
-      //  'Phone':[null,Validators.required],
-      //  'Mobile':[null,Validators.required],
-      //  'Website':[null,Validators.required],
+       'Zip_code': [null, Validators.required],
+       'State_Id': [null, Validators.required],
+       'City': [null, Validators.required],
+       'Phone':[null,Validators.required],
+        'Mobile':[null,Validators.required],
+        'Website':[null,Validators.required],
+        'Professional_Category':[null,Validators.required],
+        'Professional_SubCategory':[null,Validators.required],
       //  'Membership_subscribed':[null,Validators.required],
+      //category
+      //subcategory
    });
  }
  getAllCategories()
@@ -58,15 +66,51 @@ export class ProfessionalProfileComponent implements OnInit {
   
     
 
-    this._apiService.getAll('Utility/UserType').subscribe(
+    this._apiService.getAll('Utility/GetProfesisonalCategories').subscribe(
       resp => {
         this._categoryList=resp["result"]; 
       console.log(this._categoryList);
       },
-      error => { console.log(error); },
+     error => { console.log(error); },
       () => { console.log('complete'); }
     );
   } 
+  getAllCities()
+  {
+   
+     
+ 
+     this._apiService.getAll('Utility/Cities').subscribe(
+       resp => {
+         this._Cities=resp["result"]; 
+       console.log(this._Cities);
+       },
+      error => { console.log(error); },
+       () => { console.log('complete'); }
+     );
+   } 
+  getAllSubCategories()
+  {
+     this._apiService.getSingle('Utility/GetProfesisonalSubCategories',this._ProfessionalProfile.Professional_Category).subscribe(
+       resp => {
+         this._SubCategoryList=resp["result"]; 
+       console.log(this._SubCategoryList);
+       },
+       error => { console.log(error); },
+       () => { console.log('complete'); }
+     );
+   } 
+   getAllStates()
+   {
+      this._apiService.getSingle('Utility/GetStatesOfCities',this._ProfessionalProfile.City).subscribe(
+        resp => {
+          this._State=resp["result"]; 
+        console.log(this._State);
+        },
+        error => { console.log(error); },
+        () => { console.log('complete'); }
+      );
+    } 
 
  registerUser() {
   

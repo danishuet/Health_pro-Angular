@@ -10,10 +10,10 @@ import { TrimPipe,RoundFigurePipe,GetFirstLetterPipe,UtilityServicePipe,GetHours
 
  export class PipeModule {
 
-   static forRoot() {
-      return {
-          ngModule: PipeModule,
-          providers: [],
-      };
-   }
+   static forRoot(): ModuleWithProviders<PipeModule> {
+    return {
+        ngModule: PipeModule,
+        providers: [],
+    };
+}
  } 
