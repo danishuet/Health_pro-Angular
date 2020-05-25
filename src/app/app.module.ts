@@ -7,6 +7,7 @@ import { TopNavComponent } from './top-nav/top-nav.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { Observable } from "rxjs";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { RatingModule, CarouselModule } from 'ngx-bootstrap';
